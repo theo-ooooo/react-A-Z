@@ -2,6 +2,7 @@ import Head from "next/head";
 import homeStyles from "../styles/Home.module.css";
 import { GetStaticProps } from "next";
 import { getSortedPostsData } from "@/lib/posts";
+import Link from "next/link";
 
 export default function Home({
   posts,
@@ -9,7 +10,7 @@ export default function Home({
   posts: { id: string; title: string; date: string }[];
 }) {
   return (
-    <div>
+    <div className={homeStyles.container}>
       <Head>
         <title>Kyungwon Kang</title>
       </Head>
@@ -23,7 +24,7 @@ export default function Home({
         <ul className={homeStyles.list}>
           {posts.map(({ id, date, title }) => (
             <li className={homeStyles.listItem} key={id}>
-              <a href="">{title}</a>
+              <Link href={`/posts/${id}`}>{title}</Link>
               <br />
               <small className={homeStyles.lightText}>{date}</small>
             </li>
